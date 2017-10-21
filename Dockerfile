@@ -26,7 +26,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 # Create working directory
 # Change user UID
 # Fix ulimit issue regarding start of java on arch linux
-RUN useradd -m -d /home/jenkins -s /bin/zsh jenkins \
+RUN adduser -D jenkins \
  && echo "jenkins:jenkins" | chpasswd \
  && chown jenkins:jenkins /home/jenkins -R \
  && mkdir -p /data/jenkins-work \
