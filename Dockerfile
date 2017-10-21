@@ -29,9 +29,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 RUN adduser -D jenkins \
  && echo "jenkins:jenkins" | chpasswd \
  && chown jenkins:jenkins /home/jenkins -R \
- && mkdir -p /data/jenkins-work \
- && usermod -u ${UID} jenkins \
- && ulimit -v unlimited
+ && mkdir -p /data/jenkins-work
 
 # Install OpenJDK and fix pax headers
 # See https://stackoverflow.com/questions/27262629/jvm-cant-map-reserved-memory-when-running-in-docker-container
