@@ -6,7 +6,8 @@
 
 ### 1. Install docker
 
- This instruction works for a <b>Centos7</b> docker host. Other distributions may need some adjustments.
+ This instruction works for a <b>Centos7</b> docker host. Other distributions 
+ may need some adjustments.
 
 ```shell
 sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
@@ -55,19 +56,69 @@ sudo docker build -t starwarsfan/eisfair-ng-buildnode:latest .
 ### 3. Starting docker container
 
 ```shell
-sudo docker run --name eisfair-ng-buildnode -d starwarsfan/eisfair-ng-buildnode:latest
+sudo docker run \
+    --name eisfair-ng-buildnode \
+    -d \
+    starwarsfan/eisfair-ng-buildnode:latest
 ```
 
 #### 3.a Mount volume or folder for svn checkout
 
-With the additional run parameter _-v <host-folder>:/opt/git-clone/_ you can mount a folder on the docker 
-host which contains the the git clone outside of the container. So the run command may look like the following example:
+With the additional run parameter _-v <host-folder>:/data/work/_ you can mount 
+a folder on the docker host which contains the the git clone outside of the 
+container. So the run command may look like the following example:
 
 ```shell
-sudo docker run --name eisfair-ng-buildnode -v /data/git-clone/:/opt/git-clone/ ...
+sudo docker run \ 
+    --name eisfair-ng-buildnode \
+    -v /data/git-clone/:/data/work/ ...
 ```
 
-### 5. Useful commands
+#### 3.b Available options
+
+The container could be startet with some of the following options. These list 
+contains the default values, which could be overwritten on the docker run
+command: 
+
+ * JENKINS_URL=http://localhost
+ * JENKINS_TUNNEL=
+ * JENKINS_USERNAME=admin
+ * JENKINS_PASSWORD=admin
+ * EXECUTORS=1
+ * DESCRIPTION=Swarm node with fli4l buildroot
+ * LABELS=linux swarm fli4l-buildroot
+ * NAME=generic-swarm-node
+
+```shell
+sudo docker run \
+    --name eisfair-ng-buildnode \
+    -e "JENKINS_URL=https://jenkins.foobar.org" \
+    -e "JENKINS_PASSWORD=123456" ...
+```
+
+#### 3.c Jenkins behind reverse proxy
+
+The option JENKINS_TUNNEL might be neccessary if Jenkins is running behind
+a reverse proxy as the JNLP connection could not be established in such a 
+setup. You need to configure the following on Jenkins:
+ 
+ * Configuration > Global Security > Agents
+ * Set _TCP port for JNLP agents_ to _Static_
+ * Enter a port number like _32775_
+ * Save configuration
+
+Assumed your Jenkins is available on https://jenkins.foobar.org, the host has 
+the ip 10.20.30.40 and you configured the JNLP port 32775, you need to start 
+the container with at least these options:
+
+```shell
+sudo docker run \
+    --name eisfair-ng-buildnode \
+    -e "JENKINS_URL=https://jenkins.foobar.org" \
+    -e "JENKINS_TUNNEL=10.20.30.40:32775" ...
+```
+
+### 4. Useful commands
 
 Check running / stopped container:
 

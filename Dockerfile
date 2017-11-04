@@ -5,15 +5,17 @@ MAINTAINER Yves Schumann <yves@eisfair.org>
 
 # Default values for potential build time parameters
 ARG JENKINS_IP="localhost"
+ARG JENKINS_TUNNEL=""
 ARG USERNAME="admin"
 ARG PASSWORD="admin"
 ARG DESCRIPTION="Swarm node with eisfair-ng sdk"
 ARG LABELS="linux swarm eisfair-ng-build"
-ARG NAME="generic-swarm-node"
+ARG NAME="eisfair-ng-swarm-node"
 ARG UID="1000"
 
 # Environment variables for swarm client
 ENV JENKINS_URL=http://$JENKINS_IP \
+    JENKINS_TUNNEL=$JENKINS_TUNNEL \
     JENKINS_USERNAME=$USERNAME \
     JENKINS_PASSWORD=$PASSWORD \
     EXECUTORS=1 \
@@ -25,8 +27,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 # Setup jenkins account
 # Create working directory
 # Change user UID
-# Fix ulimit issue regarding start of java on arch linux
-RUN adduser -D jenkins \
+RUN adduser -D -h /home/jenkins -u ${UID} jenkins \
  && echo "jenkins:jenkins" | chpasswd \
  && chown jenkins:jenkins /home/jenkins -R \
  && mkdir -p /data/jenkins-work
@@ -51,6 +52,7 @@ CMD java \
     -description "${DESCRIPTION}" \
     -fsroot /data/jenkins-work \
     -master "${JENKINS_URL}" \
+    -tunnel "${JENKINS_TUNNEL}" \
     -username "${JENKINS_USERNAME}" \
     -password "${JENKINS_PASSWORD}" \
     -labels "${LABELS}" \
