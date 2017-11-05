@@ -28,7 +28,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 # Setup jenkins account
 # Create working directory
 # Change user UID
-RUN adduser -D -h /home/jenkins -u ${UID} jenkins \
+RUN adduser -D -h /home/jenkins -u ${UID} -s /bin/bash jenkins \
  && echo "jenkins:jenkins" | chpasswd \
  && chown jenkins:jenkins /home/jenkins -R
 
