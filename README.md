@@ -2,7 +2,9 @@
  
  This is a docker implementation of eisfair-ng buildnode for Jenkins.
 
- For more information please refer to [Official website](https://web.nettworks.org/wiki/display/eng/eisfair-ng+Wiki) or [Support forum](https://web.nettworks.org/forum/)
+ For more information please refer to 
+ [Official website](https://web.nettworks.org/wiki/display/eng/eisfair-ng+Wiki) 
+ or [Support forum](https://web.nettworks.org/forum/)
 
 ### 1. Install docker
 
