@@ -12,7 +12,7 @@ ARG DESCRIPTION="Swarm node with eisfair-ng sdk"
 ARG LABELS="linux swarm eisfair-ng-build"
 ARG NAME="eisfair-ng-swarm-node"
 ARG UID="1010"
-ARG GID="1001"
+ARG GID="1010"
 
 # Environment variables for swarm client
 ENV JENKINS_URL=http://$JENKINS_IP \
@@ -30,7 +30,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 # Create working directory
 # Change user UID and GID
 RUN addgroup -g ${GID} jenkins \
- && adduser -D -h /home/jenkins -u ${UID} -g ${GID} -s /bin/bash jenkins \
+ && adduser -D -h /home/jenkins -u ${UID} -g ${GID} -G abuild -s /bin/bash jenkins \
  && echo "jenkins:jenkins" | chpasswd \
  && chown jenkins:jenkins /home/jenkins -R
 
