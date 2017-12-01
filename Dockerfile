@@ -32,6 +32,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 RUN addgroup -g ${GID} jenkins \
  && adduser -D -h /home/jenkins -u ${UID} -g ${GID} -G abuild -s /bin/bash jenkins \
  && echo "jenkins:jenkins" | chpasswd \
+ && echo "jenkins     ALL=(ALL) ALL" >> /etc/sudoers \
  && chown jenkins:jenkins /home/jenkins -R
 
 # Install OpenJDK
