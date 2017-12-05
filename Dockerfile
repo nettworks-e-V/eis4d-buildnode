@@ -10,7 +10,7 @@ ARG USERNAME="admin"
 ARG PASSWORD="admin"
 ARG DESCRIPTION="Swarm node with eisfair-ng sdk"
 ARG LABELS="linux swarm eisfair-ng-build"
-ARG NAME="eisfair-ng-swarm-node"
+ARG NAME="eisfair-ng"
 ARG UID="1010"
 ARG GID="1010"
 
@@ -23,7 +23,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
     DESCRIPTION=$DESCRIPTION \
     LABELS=$LABELS \
     NAME=$NAME \
-    SWARM_PLUGIN_VERSION=3.5 \
+    SWARM_PLUGIN_VERSION=3.6 \
     WORK_DIR=/data/work
 
 # Setup jenkins account
