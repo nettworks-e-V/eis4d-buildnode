@@ -11,8 +11,8 @@ ARG PASSWORD="admin"
 ARG DESCRIPTION="Swarm node with eisfair-ng sdk (edge)"
 ARG LABELS="linux swarm e-ng-edge"
 ARG NAME="e-ng-edge"
-ARG UID="1010"
-ARG GID="1010"
+ARG UID="1058"
+ARG GID="1007"
 
 # Environment variables for swarm client
 ENV JENKINS_URL=http://$JENKINS_IP \
