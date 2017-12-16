@@ -33,7 +33,7 @@ RUN addgroup -g ${GID} jenkins \
  && adduser -D -h /home/jenkins -u ${UID} -G jenkins -s /bin/bash jenkins \
  && addgroup jenkins abuild \
  && echo "jenkins:jenkins" | chpasswd \
- && echo "jenkins     ALL=(ALL) ALL" >> /etc/sudoers \
+ && echo "jenkins     ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
  && chown jenkins:jenkins /home/jenkins -R
 
 # Install OpenJDK
