@@ -30,7 +30,8 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 # Create working directory
 # Change user UID and GID
 RUN addgroup -g ${GID} jenkins \
- && adduser -D -h /home/jenkins -u ${UID} -g ${GID} -G abuild -s /bin/bash jenkins \
+ && adduser -D -h /home/jenkins -u ${UID} -g ${GID} -s /bin/bash jenkins \
+ && addgroup jenkins abuild \
  && echo "jenkins:jenkins" | chpasswd \
  && echo "jenkins     ALL=(ALL) ALL" >> /etc/sudoers \
  && chown jenkins:jenkins /home/jenkins -R
