@@ -1,4 +1,4 @@
-FROM nettworksevtooling/eisfair-ng-buildcontainer:edge-latest
+FROM nettworksevtooling/eisfair-ng-buildcontainer:i386-edge-latest
 MAINTAINER Yves Schumann <yves@eisfair.org>
 
 # Configuration for Jenkins swarm
