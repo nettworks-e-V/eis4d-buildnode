@@ -8,9 +8,9 @@ ARG JENKINS_IP="localhost"
 ARG JENKINS_TUNNEL=""
 ARG USERNAME="admin"
 ARG PASSWORD="admin"
-ARG DESCRIPTION="Swarm node with eisfair-ng sdk (v3.7)"
-ARG LABELS="linux swarm e-ng-v3.7"
-ARG NAME="e-ng-v3.7"
+ARG DESCRIPTION="Swarm node with eisfair-ng sdk (v3.8)"
+ARG LABELS="linux swarm e-ng-v3.8"
+ARG NAME="e-ng-v3.8"
 ARG UID="1058"
 ARG GID="1007"
 
@@ -23,7 +23,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
     DESCRIPTION=$DESCRIPTION \
     LABELS=$LABELS \
     NAME=$NAME \
-    SWARM_PLUGIN_VERSION=3.7 \
+    SWARM_PLUGIN_VERSION=3.13 \
     WORK_DIR=/data/work
 
 # Setup jenkins account
