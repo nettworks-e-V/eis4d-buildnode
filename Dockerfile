@@ -32,7 +32,7 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 RUN groupadd --gid ${GID} jenkins \
  && useradd --create-home --home-dir /home/jenkins --shell /bin/bash --uid ${UID} --gid ${GID} jenkins \
  && echo "jenkins:jenkins" | chpasswd \
- && chown jenkins:jenkins /home/jenkins -R \
+ && chown jenkins:jenkins /home/jenkins -R
 
 # Install OpenJDK
 RUN apt-get install -y \
