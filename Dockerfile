@@ -1,4 +1,4 @@
-FROM nettworksevtooling/eisfair-ng-buildcontainer:edge-64-latest
+FROM nettworksevtooling/eis4d-buildcontainer:latest
 MAINTAINER Yves Schumann <yves@eisfair.org>
 
 # Configuration for Jenkins swarm
@@ -8,9 +8,9 @@ ARG JENKINS_IP="localhost"
 ARG JENKINS_TUNNEL=""
 ARG USERNAME="admin"
 ARG PASSWORD="admin"
-ARG DESCRIPTION="Swarm node with eisfair-ng sdk (edge)"
-ARG LABELS="linux swarm e-ng-edge"
-ARG NAME="e-ng-edge"
+ARG DESCRIPTION="Swarm node with eis4d sdk"
+ARG LABELS="linux swarm eis4d"
+ARG NAME="eis4d"
 ARG UID="1058"
 ARG GID="1007"
 
