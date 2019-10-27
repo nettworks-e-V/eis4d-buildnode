@@ -29,15 +29,15 @@ ENV JENKINS_URL=http://$JENKINS_IP \
 # Setup jenkins account
 # Create working directory
 # Change user UID and GID
-RUN addgroup -g ${GID} jenkins \
- && adduser -D -h /home/jenkins -u ${UID} -G jenkins -s /bin/bash jenkins \
- && addgroup jenkins abuild \
- && echo "jenkins:jenkins" | chpasswd \
- && echo "jenkins     ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
- && chown jenkins:jenkins /home/jenkins -R
+RUN groupadd --gid ${GID} jenkins \
+ && useradd --create-home --home-dir /home/jenkins --shell /bin/bash --uid ${UID} --gid ${GID} jenkins \
+ && echo "jenkins:${DEVELOP_PASS}" | chpasswd \
+ && chown jenkins:jenkins /home/jenkins -R \
 
 # Install OpenJDK
-RUN apk add openjdk8
+RUN apt-get install -y \
+    openjdk-8-jdk \
+ && apt-get clean
 
 # Mount point for Jenkins .ssh folder
 VOLUME /home/jenkins/.ssh
