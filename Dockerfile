@@ -36,7 +36,7 @@ RUN groupadd --gid ${GID} jenkins \
 
 # Install OpenJDK
 RUN apt-get install -y \
-    openjdk-8-jdk \
+    openjdk-11-jdk \
  && apt-get clean
 
 # Mount point for Jenkins .ssh folder
